@@ -1,10 +1,19 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # http_verb '/path', to: 'controller#action', as: :prefix
+  # prefix is ONLY connected to the path (not the verb)
+  get '/restaurants', to: 'restaurants#index', as: :restaurants
+  # Create
+  # page for our form
+  get '/restaurants/new', to: 'restaurants#new', as: :new_restaurant
+  # a place to send the form info and create the instance
+  post '/restaurants', to: 'restaurants#create'
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
+  get '/restaurants/:id', to: 'restaurants#show', as: :restaurant
 
-  # Defines the root path route ("/")
-  # root "posts#index"
 end
+
+# See all restaurants -> index
+# See details about one restaurant -> show
+# Create a restaurant
+# Update a restaurant
+# Destroy a restaurant
