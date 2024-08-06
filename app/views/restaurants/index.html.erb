@@ -1,11 +1,13 @@
-<div class="container">
-  <div class="d-flex justify-content-between align-items-end">
+<div class="container mt-3">
+  <div class="d-flex justify-content-between align-items-center">
     <h1>Restaurants</h1>
-    <%= link_to 'New Restaurant', new_restaurant_path %>
+    <%= link_to new_restaurant_path, class: 'text-dark text-decoration-none' do %>
+      <i class="fa-solid fa-plus"></i>
+    <% end %>
   </div>
   <div class="cards">
     <% @restaurants.each do |restaurant| %>
-      <p><%= link_to restaurant.name, restaurant_path(restaurant), class: 'text-decoration-none text-dark' %></p>
+      <%= render 'restaurants/card', restaurant: restaurant %>
     <% end %>
   </div>
 </div>
