@@ -3,4 +3,12 @@
   <p><%= @restaurant.address %></p>
   <p><%= '*' * @restaurant.rating %></p>
   <%= link_to 'Restaurants', restaurants_path, class: 'btn btn-success'  %>
+  <%= link_to edit_restaurant_path(@restaurant), class: 'btn btn-light' do %>
+    <i class="fa-solid fa-pencil"></i>
+  <% end %>
+  <!-- -->
+  <a href="" data-turbo-method='delete'></a>
+  <%= link_to restaurant_path(@restaurant), class: 'btn btn-light', data: { turbo_method: :delete, turbo_confirm: "Delete #{@restaurant.name}?" } do %>
+    <i class="fa-solid fa-trash"></i>
+  <% end %>
 </div>
