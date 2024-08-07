@@ -73,3 +73,4 @@ gem "bootstrap", "~> 5.2"
 gem 'faker'
 gem "font-awesome-sass", "~> 6.1"
 gem "sassc-rails"
+gem "simple_form"

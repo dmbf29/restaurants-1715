@@ -1,10 +1,21 @@
 class RestaurantsController < ApplicationController
+
+  def top
+    @restaurants = Restaurant.where(rating: 5)
+    # render 'index' # show this view instead of default behavior
+  end
+
+  def chef
+    @restaurant = Restaurant.find(params[:id])
+  end
+
   def index
     @restaurants = Restaurant.all
   end
 
   def show
     @restaurant = Restaurant.find(params[:id])
+    # @review = Review.new
   end
 
   def new
