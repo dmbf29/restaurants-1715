@@ -57,6 +57,6 @@ class RestaurantsController < ApplicationController
 
   def restaurant_params
     # whitelisting our form data -> only allowing what we want from the user
-    params.require(:restaurant).permit(:name, :address, :rating)
+    params.require(:restaurant).permit(:name, :address, :rating, :opening_date)
   end
 end
