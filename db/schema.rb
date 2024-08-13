@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_12_093511) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_13_022711) do
   create_table "restaurants", force: :cascade do |t|
     t.string "name"
     t.integer "rating"
@@ -20,6 +20,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_12_093511) do
     t.string "category"
     t.string "chef_name"
     t.date "opening_date"
+    t.float "latitude"
+    t.float "longitude"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -28,6 +30,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_12_093511) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["restaurant_id"], name: "index_reviews_on_restaurant_id"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.boolean "completed", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "reviews", "restaurants"
