@@ -4,7 +4,7 @@
 </div>
 <div class="container mt-2">
   <div class="row justify-content-around">
-    <div class="col-12 col-sm-8">
+    <div class="col-12 col-sm-8" data-controller="insert-review">
       <p>
         <%= link_to '< Restaurants', restaurants_path, class: 'btn-light opacity-25 text-decoration-none' %>
       </p>
@@ -21,19 +21,32 @@
       </div>
       <p class="fw-lighter opacity-75 mt-2"><%= Faker::Restaurant.description  %></p>
       <h3>Reviews</h3>
-      <ul>
+      <ul data-insert-review-target='list'>
         <% if @restaurant.reviews.any? %>
           <% @restaurant.reviews.each do |review| %>
-            <li>
-              <%= review.content %>
-              <%= link_to 'x', review_path(review), data: { turbo_method: :delete, turbo_confirm: 'Delete Review?' } %>
-            </li>
+            <%= render 'reviews/review', review: review  %>
           <% end %>
         <% else %>
           <li>No reviews yet.</li>
         <% end %>
-        <p><%= link_to 'Add Review', new_restaurant_review_path(@restaurant) %></p>
       </ul>
+      <p><%#= link_to 'Add Review', new_restaurant_review_path(@restaurant) %></p>
+      <p>
+        <button class="btn btn-info" type="button" data-insert-review-target='btn' data-bs-toggle="collapse" data-bs-target="#reviewCreate" aria-expanded="false" aria-controls="reviewCreate">
+          Add a Review
+        </button>
+      </p>
+      <div class="collapse" id="reviewCreate">
+        <div class="card card-body">
+          <!-- <form action="" data-action="submit->insert-review#create" data-insert-review-target='form'>
+        </form>
+        -->
+          <%= simple_form_for [@restaurant, @review], data: { action: 'submit->insert-review#create', insert_review_target: 'form' } do |f| %>
+            <%= f.input :content %>
+            <%= f.submit 'Submit', class: 'btn btn-info mt-2' %>
+          <% end %>
+        </div>
+      </div>
     </div>
     <div class="col-12 col-sm-4 mt-5">
       <%= render 'restaurants/side_info' %>

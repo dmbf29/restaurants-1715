@@ -1,7 +1,10 @@
 <%= simple_form_for @restaurant do |f| %>
   <%= f.input :name %>
   <%= f.input :address %>
-  <%= f.input :opening_date %>
+  <!-- <input type="text" data-controller="datepicker"> -->
+  <%= f.input :opening_date,
+              as: :string,
+              input_html: { data: { controller: 'datepicker' } } %>
   <%= f.input :rating, collection: (1..5).to_a, include_blank: false %>
   <%= f.submit 'Submit', class: 'btn btn-info mt-2' %>
 <% end %>

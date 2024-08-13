@@ -30,11 +30,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_12_093511) do
     t.index ["restaurant_id"], name: "index_reviews_on_restaurant_id"
   end
 
-  create_table "tasks", force: :cascade do |t|
-    t.boolean "completed", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   add_foreign_key "reviews", "restaurants"
 end
