@@ -11,14 +11,16 @@ def get_category(name)
 end
 
 puts "Creating #{CHEFS.count} Restaurants..."
-CHEFS.shuffle.each do |name|
+CHEFS.shuffle.each_with_index do |name, index|
   restaurant_name = Faker::Restaurant.unique.name
   Restaurant.create!(
     name: "#{name}'s #{restaurant_name}",
     rating: rand(3..5),
-    address: Faker::Address.street_address,
+    address: "#{rand(1..3)}-#{rand(1..11)} Meguro, Meguro ku, Tokyo, Japan",
     category: get_category(restaurant_name),
-    chef_name: name
+    chef_name: name,
+    latitude: 35.65048 + index,
+    longitude: 139.71571 + index
   )
 end
 puts "... created #{Restaurant.count} restaurants"
